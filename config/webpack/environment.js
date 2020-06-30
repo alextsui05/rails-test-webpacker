@@ -1,9 +1,13 @@
 const { environment } = require('@rails/webpacker')
+const webpack = require('webpack')
 
 environment.config.merge({
   output: {
     filename: '[name].[contenthash:8].js',
   },
+  plugins: [
+    new webpack.HashedModuleIdsPlugin(), // so that file hashes don't change unexpectedly
+  ],
   optimization: {
     runtimeChunk: 'single',
     splitChunks: {
